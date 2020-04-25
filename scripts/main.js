@@ -84,6 +84,12 @@ function tileEvent(tile)
     });
 }
 
+container.addEventListener(`dragstart drop`, function(e)
+{
+    e.preventDefault();
+    return false;
+});
+
 container.addEventListener('mousedown', mouseOn);
 container.addEventListener('mouseup', mouseOff);
 container.addEventListener('mouseleave', mouseOff);
