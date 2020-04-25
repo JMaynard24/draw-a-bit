@@ -1,4 +1,4 @@
-let gridSize = 128;
+let gridSize = 64;
 const gridPixels = 512;
 let mouseDown = false;
 let tiles;
@@ -123,7 +123,7 @@ container.addEventListener(`mouseover`, function(e)
     checkMouse(e.target);
 });
 
-container.addEventListener(`click`, function(e)
+container.addEventListener(`mousedown`, function(e)
 {
     changeTileColor(e.target, mainColor);
 });
