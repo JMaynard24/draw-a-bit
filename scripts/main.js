@@ -36,7 +36,7 @@ function changeColor(tile, newColor)
 
 function changeGridSize()
 {
-    gridSize = prompt("How many colums would you like the grid to have?");
+    gridSize = prompt("How many columns would you like the grid to have?");
     while(container.firstChild)
     {
         container.removeChild(container.lastChild);
