@@ -23,7 +23,7 @@ function createGrid(size)
         container.appendChild(div);
         start++;
     }
-    // tiles = document.querySelectorAll('.tile')
+    tiles = document.querySelectorAll('.tile')
     // tiles.forEach(tile => tileEvent(tile))
 }
 
@@ -84,6 +84,14 @@ function checkMouse(tile)
 container.addEventListener(`mouseover`, function(e)
 {
     checkMouse(e.target);
+});
+
+container.addEventListener(`mousedown`, function(e)
+{
+    if (e.target.backgroundColor != "#000000")
+        {
+            changeColor(e.target, "#000000");
+        }
 });
 
 container.addEventListener('mousedown', mouseOn);
