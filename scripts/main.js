@@ -5,6 +5,9 @@ let tiles;
 let container = document.getElementById(`container`)
 let resetButton = document.getElementById(`reset-grid`)
 let sizeButton = document.getElementById(`change-size`)
+let colorButton = document.getElementById(`change-color`)
+let colorIndicator = document.getElementById(`chosen-color`)
+let mainColor = "#000000";
 
 function createGrid(size)
 {
@@ -29,9 +32,12 @@ function createGrid(size)
 
 createGrid(gridSize);
 
-function changeColor(tile, newColor)
+function changeTileColor(tile, newColor)
 {
-    tile.style.backgroundColor = newColor;
+    if (tile.backgroundColor != newColor)
+        {
+            tile.style.backgroundColor = newColor;
+        }
 }
 
 function changeGridSize()
@@ -45,6 +51,43 @@ function changeGridSize()
     
 }
 
+function changeColor()
+{
+    let correct = false;
+    let warn = false;
+    let color = "";
+    let key = "0123456789ABCDEF"
+    while(!correct)
+    {
+        color = prompt("Enter 6-digit hex value for the color you want (Ignore the # -> #??????)");
+        color = color.toUpperCase();
+        for (char in color)
+        {
+            if (!key.includes(color[char]))
+            {
+                warn = true;
+            }
+        }
+        console.log(color.length);
+        if (color.length != 6)
+        {
+            warn = true;
+        }
+        if (!warn)
+        {
+            correct = true
+        }
+        else
+        {
+            alert("Incorrect Input, try again! (only 0-9, A-F allowed!)")
+        }
+    }
+
+    color = "#" + color;
+    colorIndicator.style.backgroundColor = color;
+    mainColor = color;
+}
+
 function resetGrid()
 {
     tiles.forEach(tile => resetTile(tile));
@@ -52,10 +95,7 @@ function resetGrid()
 
 function resetTile(tile)
 {
-    if (tile.style.backgroundColor != "#FFFFFF")
-    {
-        changeColor(tile, "#FFFFFF");
-    }
+    changeTileColor(tile, "#FFFFFF");
 }
 
 function mouseOff()
@@ -74,10 +114,7 @@ function checkMouse(tile)
 {
     if (mouseDown)
     {
-        if (tile.backgroundColor != "#000000")
-            {
-                changeColor(tile, "#000000");
-            }
+        changeTileColor(tile, mainColor);
     }
 }
 
@@ -88,10 +125,7 @@ container.addEventListener(`mouseover`, function(e)
 
 container.addEventListener(`mousedown`, function(e)
 {
-    if (e.target.backgroundColor != "#000000")
-        {
-            changeColor(e.target, "#000000");
-        }
+    changeTileColor(tile, mainColor);
 });
 
 container.addEventListener('mousedown', mouseOn);
@@ -99,6 +133,7 @@ container.addEventListener('mouseup', mouseOff);
 container.addEventListener('mouseleave', mouseOff);
 sizeButton.addEventListener('click', changeGridSize);
 resetButton.addEventListener('click', resetGrid);
+colorButton.addEventListener('click', changeColor);
 
 /*
  512 => 16 => 2x2

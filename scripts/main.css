@@ -34,6 +34,15 @@ h1
     margin: 2% auto 0 auto;
 }
 
+#chosen-color
+{
+    width: 25px;
+    height: 25px;
+    margin: 5px 0 0 0;
+    background-color: #000000;
+    border: 1px solid #FFFFFF;
+}
+
 .button
 {
     background-color: #ffffff;
