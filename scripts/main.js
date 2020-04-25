@@ -23,8 +23,8 @@ function createGrid(size)
         container.appendChild(div);
         start++;
     }
-    tiles = document.querySelectorAll('.tile')
-    tiles.forEach(tile => tileEvent(tile))
+    // tiles = document.querySelectorAll('.tile')
+    // tiles.forEach(tile => tileEvent(tile))
 }
 
 createGrid(gridSize);
@@ -36,7 +36,7 @@ function changeColor(tile, newColor)
 
 function changeGridSize()
 {
-    gridSize = prompt("How big would you like the grid to be? (??x??)");
+    gridSize = prompt("How many colums would you like the grid to have?");
     while(container.firstChild)
     {
         container.removeChild(container.lastChild);
@@ -70,24 +70,20 @@ function mouseOn()
     console.log(mouseDown);
 }
 
-function tileEvent(tile)
+function checkMouse(tile)
 {
-    tile.addEventListener('mouseover', function(e)
+    if (mouseDown)
     {
-        if (mouseDown)
-        {
-            if (tile.backgroundColor != "#000000")
+        if (tile.backgroundColor != "#000000")
             {
                 changeColor(tile, "#000000");
             }
-        }
-    });
+    }
 }
 
-container.addEventListener(`dragstart drop`, function(e)
+container.addEventListener(`mouseover`, function(e)
 {
-    e.preventDefault();
-    return false;
+    checkMouse(e.target);
 });
 
 container.addEventListener('mousedown', mouseOn);
