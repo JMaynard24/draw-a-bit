@@ -123,9 +123,9 @@ container.addEventListener(`mouseover`, function(e)
     checkMouse(e.target);
 });
 
-container.addEventListener(`mousedown`, function(e)
+container.addEventListener(`click`, function(e)
 {
-    changeTileColor(tile, mainColor);
+    changeTileColor(e.target, mainColor);
 });
 
 container.addEventListener('mousedown', mouseOn);
