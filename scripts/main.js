@@ -59,8 +59,10 @@ function changeColor()
     let key = "0123456789ABCDEF"
     while(!correct)
     {
+        warn = false;
         color = prompt("Enter 6-digit hex value for the color you want (Ignore the # -> #??????)");
         color = color.toUpperCase();
+        console.log(color);
         for (char in color)
         {
             if (!key.includes(color[char]))
